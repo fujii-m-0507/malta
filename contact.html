@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- レスポンシブ 文字の大きさは画面に合わせる-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>質問フォーム</title>
+    <meta name="descriprion" content="マルタへの旅行、留学に関してご質問がある方はお気軽にどうぞ。旅行、留学のプランニング等はできませんのでご容赦ください。">
+    <!-- link rescss -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/news.css">
+    <!-- ファビコン設定 -->
+    <link rel="icon" type="image/png" href="images/favicon malta.jpg">
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script>
+
+        $(function () {
+
+            $("form").submit(function () {
+                let err = 0;
+                if ($("input[name='name']").val() === "") {
+                    if ($("span#name").css("color") != "red") {
+                        $("input[name='name']").css("border", "1px solid red").after("<span id='name'> お名前を入力してください</span>");
+                        $("span#name").css("color", "red");
+                    }
+                    err = 1;
+                } else {
+                    $("input[name='name']").css("border", "1px solid gray");
+                    $("span#name").text("");
+                    $("span#name").css("color", "gray");
+                }
+                if ($("input[name='mail']").val() === "") {
+                    if ($("span#mail").css("color") != "red") {
+                        $("input[name='mail']").css("border", "1px solid red").after("<span id='mail'> メールアドレスを入力してください</span>");
+                        $("span#mail").css("color", "red");
+                    }
+                    err = 1;
+                } else {
+                    $("input[name='mail']").css("border", "1px solid gray");
+                    $("span#mail").text("");
+                    $("span#mail").css("color", "gray");
+                }
+                if ($("input[name='checkbox']").val() === "") {
+                    if ($("span#checkbox").css("color") != "red") {
+                        $("input[name='checkbox']").css("border", "1px solid red").after("<span id='checkbox'> メールアドレスを入力してください</span>");
+                        $("span#checkbox").css("color", "red");
+                    }
+                    err = 1;
+                } else {
+                    $("input[name='checkbox']").css("border", "1px solid gray");
+                    $("span#checkbox").text("");
+                    $("span#checkbox").css("color", "gray");
+                }
+                if ($("textarea[name='your-message']").val() === "") {
+                    if ($("span#your-message").css("color") != "red") {
+                        $("textarea[name='your-message']").css("border", "1px solid red").after("<span id='your-message'> メールアドレスを入力してください</span>");
+                        $("span#your-message").css("color", "red");
+                    }
+                    err = 1;
+                } else {
+                    $("textarea[name='your-message']").css("border", "1px solid gray");
+                    $("span#your-message").text("");
+                    $("span#your-message").css("color", "gray");
+                }
+                console.log($("input[type='checkbox']").val()); //最初のvalue属性値 HTMLが取得されるので使えない
+                if ($("input:checked").length === 0) {
+                    $("label[for='other']").after("<span id='checkbox'>  ※少なくともひとつチェックしてください</span>");
+                    $("span#checkbox").css("color", "red");
+                    err = 1;
+                }
+                if (err == 1) {
+                    return false;
+                }
+            }); // end of submit
+        });
+    </script>
+</head>
+
+<body>
+    <div id="contact" class="big-bg">
+        <header class="page-header wrapper">
+            <!-- /*wrapper全体を囲む設定にする 最大幅を設定できる -->
+            <!-- <h1>
+                <a href="index.html"><img class="logo" src="images/logo.svg" alt="WCBカフェ"></a>
+                <br>自然派志向のためのオーガニックカフェ
+            </h1> -->
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="aboutmalta.html">Top</a></li>
+                    <li><a href="valetta.html">バレッタ</a></li>
+                    <li><a href="sliema.html">スリーマ</a></li>
+                    <li><a href="spot.html">その他のエリア</a></li>
+                    <li><a href="lifestyle.html">留学生活</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="wrapper">
+            <h2 class="page-title">質問フォーム</h2>
+            <form action="sendmail.php" method="post">
+                <div>
+                    <label for="checkbox">質問内容</label>
+                    <p>お名前（必須）<br><input type="text" name="name" /></p><br>
+                    <p>メールアドレス（必須）<br><input type="text" name="mail" /></p><br>
+                    <input type="checkbox"  name="travel" id="travel" value="旅行"><label for="travel">旅行</label>
+                    <input type="checkbox"  name="study" id="study" value="留学"><label for="study">留学</label>
+                    <input type="checkbox"  name="ohter" id="ohter" value="その他"><label for="ohter">その他</label>
+                </div>
+                <div>
+                    <!-- <label for="message">質問内容</label> -->
+                    <textarea type="text" name="your-message"></textarea>
+                </div>
+                <input type="submit" class="button" value="送信" />
+            </form>
+        </div><!--/.wrapper-->
+    </div><!--/#contact-->
+    <footer>
+        <div class="wrapper">
+            <p><small>&copy; 2023 malta travel</small></p>
+        </div>
+    </footer>
+</body>
+
+</html>
