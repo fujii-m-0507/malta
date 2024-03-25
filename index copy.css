@@ -26,8 +26,9 @@ img{
     text-transform: uppercase;/*全部大文字強制変換*/
     margin-top: 34px;
     list-style: none;
-    /* top:0%;
-    left:0%; */
+    position: absolute;
+    top:0%;
+    left:0%;
 }
 .main-nav li {
     margin-left: 36px;
@@ -54,6 +55,8 @@ header h1 {
 .home-content {
     text-align: center;
     margin-top: 10%;/*何に対する％？*/
+    top:50%;
+    left: 50%;
 }
 .home-content p {
     font-size: 2rem;
